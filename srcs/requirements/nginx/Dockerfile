@@ -12,4 +12,8 @@ EXPOSE 443
 
 COPY . .
 
+RUN bash tools/setup.sh
+
+COPY tools/default /etc/nginx/sites-available/default
+
 CMD ["nginx", "-g", "daemon off;"]
