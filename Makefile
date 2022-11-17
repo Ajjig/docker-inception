@@ -1,8 +1,7 @@
 
 
 clean-images:
-	docker rmi $(docker images | grep -v buster | grep -v REPOSITORY | awk '{print $ 1}')
-
+	docker rm -f $(docker ps -aq) ;  docker rmi -f $(docker images -q)
 clean-container:
 	yes | docker system prune
 
