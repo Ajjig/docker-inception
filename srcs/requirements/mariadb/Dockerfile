@@ -8,8 +8,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN service mysql start
+RUN service mysql start && bash tools/setup.sh
 
-RUN chmod +x tools/setup.sh && bash tools/FILE.sql
-
-CMD ["mysql_safe"]
+CMD ["mysqld_safe"]
