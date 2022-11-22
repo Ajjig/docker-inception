@@ -5,3 +5,5 @@ machine.
 ## Containers
  - Nginx
  - Mariadb
+ - Wordpress
+ - Redis
