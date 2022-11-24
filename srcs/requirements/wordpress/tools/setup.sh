@@ -1,4 +1,6 @@
-ls /var/www/html/wp-config.php
+sed "s/\/run\/php\/php7.3-fpm.sock/9000" --in-place "/etc/php/7.3/fpm/pool.d/www.conf"
+
+ls /var/www/html/wp-config.php &> /dev/null
 
 if [ $? ] ; then
 	wp core download --path=/var/www/html --allow-root
