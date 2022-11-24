@@ -1,0 +1,57 @@
+version: '3.5'
+
+services:
+  
+  mariadb:
+    
+    container_name: mariadb_c
+    
+    build: ./requirements/mariadb
+    
+    env_file:
+      - .env
+    
+    ports:
+      - '3306:3306'
+    
+    volumes:
+      - ./data:/var/lib/mysql
+    
+    restart: unless-stopped
+  
+  wordpress:
+    
+    container_name: wordpress_c
+    
+    build: ./requirements/wordpress
+    
+    ports:
+      - '9000:9000'
+
+    volumes:
+      - ./wordpress:/var/www/html
+    
+    env_file:
+      - .env
+    
+    depends_on:
+      - mariadb
+    
+    restart: unless-stopped
+  
+  nginx:
+
+    container_name: nginx
+    
+    build: ./requirements/nginx
+    
+    ports:
+      - '443:443'
+    
+    volumes:
+      - ./wordpress:/var/www/html
+    
+    depends_on:
+      - wordpress
+    
+    restart: unless-stopped
