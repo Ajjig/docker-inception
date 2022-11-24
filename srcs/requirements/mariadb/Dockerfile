@@ -8,6 +8,8 @@ WORKDIR /app
 
 COPY . .
 
+RUN cat conf/conf >> /etc/mysql/mariadb.conf.d/50-server.cnf
+
 RUN service mysql start && bash tools/setup.sh
 
 CMD ["mysqld_safe"]
