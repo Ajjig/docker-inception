@@ -1,5 +1,4 @@
-data/
+data/*
 data
-data/
-data
-wordpress/wordpress/*
+wordpress
+wordpress/*
