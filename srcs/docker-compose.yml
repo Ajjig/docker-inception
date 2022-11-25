@@ -6,14 +6,14 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ./data
+      device: /home/ajjig/inception/data
       o: bind
   wp:
     name: wp
     driver: local
     driver_opts:
       type: none
-      device: ./wordpress
+      device: /home/ajjig/inception/wordpress
       o: bind
 
 services:
