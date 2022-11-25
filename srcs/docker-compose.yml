@@ -1,5 +1,21 @@
 version: '3.5'
 
+volumes: 
+  db:
+    name: db
+    driver: local
+    driver_opts:
+      type: none
+      device: ./data
+      o: bind
+  wp:
+    name: wp
+    driver: local
+    driver_opts:
+      type: none
+      device: ./wordpress
+      o: bind
+
 services:
   
   mariadb:
@@ -15,7 +31,7 @@ services:
       - '3306:3306'
     
     volumes:
-      - ./data:/var/lib/mysql
+      - db:/var/lib/mysql
     
     restart: unless-stopped
   
@@ -29,7 +45,7 @@ services:
       - '9000:9000'
 
     volumes:
-      - ./wordpress:/var/www/html
+      - wp:/var/www/html
     
     env_file:
       - .env

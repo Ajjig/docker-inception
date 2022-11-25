@@ -1,8 +1,8 @@
 FROM debian:buster
 
-RUN apt update
+RUN apt-get update
 
-RUN apt install -y mariadb-server
+RUN apt-get install -y mariadb-server
 
 WORKDIR /app
 
@@ -10,8 +10,8 @@ EXPOSE 3306
 
 COPY . .
 
-#RUN cat conf/conf >> /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN cat conf/conf >> /etc/mysql/mariadb.conf.d/50-server.cnf
 
-RUN service mysql start && mysql -u root < tools/FILE.sql
+RUN service mysql start ; mysql -u root < ./tools/FILE.sql
 
 CMD ["mysqld_safe"]

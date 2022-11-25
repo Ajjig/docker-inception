@@ -16,6 +16,5 @@ RUN bash tools/setup.sh
 
 COPY conf/default /etc/nginx/sites-available/default
 
-RUN mv /etc/nginx/sites-available/default /etc/nginx/sites-available/wordpress
 
 CMD ["nginx", "-g", "daemon off;"]
