@@ -15,7 +15,6 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN chmod +x wp-cli.phar
 
 RUN mv wp-cli.phar /usr/local/bin/wp && chmod 755 /usr/local/bin/wp
-
-RUN bash tools/setup.sh
+ENTRYPOINT [ "bash", "tools/setup.sh"]
 
 CMD ["php-fpm7.3", "--nodaemonize"]
