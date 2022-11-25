@@ -6,6 +6,8 @@ RUN apt install -y mariadb-server
 
 WORKDIR /app
 
+EXPOSE 3306
+
 COPY . .
 
 RUN cat conf/conf >> /etc/mysql/mariadb.conf.d/50-server.cnf

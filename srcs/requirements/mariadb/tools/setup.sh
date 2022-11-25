@@ -1,1 +1,1 @@
-cat /app/tools/FILE.sql | mysql -u root 
+cat FILE.sql > mysql -u root
