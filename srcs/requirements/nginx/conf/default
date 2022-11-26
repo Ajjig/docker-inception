@@ -25,9 +25,9 @@ server {
 	# SSL configuration
 	listen 443 ssl;
 	listen [::]:443 ssl;
-	
-	
-	ssl on;	
+
+
+	ssl on;
 	ssl_certificate /etc/ssl/certs/nginx.crt;
 	ssl_certificate_key /etc/ssl/private/nginx.key;
 	ssl_protocols TLSv1.2;
@@ -57,24 +57,13 @@ server {
 	}
 
 	# pass PHP scripts to FastCGI server
-	#
-	#location ~ \.php$ {
-		#include snippets/fastcgi-php.conf;
-
-		#fastcgi_pass wordpress:9000
-		# With php-fpm (or other unix sockets):
-		#fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-		# With php-cgi (or other tcp sockets):
-		#fastcgi_pass 127.0.0.1:9000;
-	#}
-	location ~ \.php$ 
-	{
+	location ~ \.php$ {
         	try_files $uri =404;
         	fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        	fastcgi_pass 127.0.0.1:9000;
+        	fastcgi_pass wordpress:9000;
         	fastcgi_index index.php;
-        	include fastcgi_params;
-        	fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+       		include fastcgi_params;
+       		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         	fastcgi_param PATH_INFO $fastcgi_path_info;
     	}
 	# deny access to .htaccess files, if Apache's document root
