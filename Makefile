@@ -9,8 +9,14 @@ init:
 	mkdir -p ~/inception/wordpress
 
 clean-containers:
+
+	# clear containers nd cached
 	sudo docker system prune -f
+
+	# remove volumes
 	sudo rm -rf $(DB)/* $(WP)/*
+	# this removes all saved images
+	-sudo docker rmi  docker rmi $(shell docker images -q | grep -v 1036
 
 fclean : init down clean-containers
 
