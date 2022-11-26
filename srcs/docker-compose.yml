@@ -1,6 +1,11 @@
 version: '3.5'
 
-volumes: 
+networks:
+  warper-network:
+    name: warper-network
+    driver: bridge
+
+volumes:
   db:
     name: db
     driver: local
@@ -17,57 +22,63 @@ volumes:
       o: bind
 
 services:
-  
+
   mariadb:
-    
-    container_name: mariadb_c
-    
+
+    container_name: mariadb
+
+    networks:
+      - warper-network
+
     build: ./requirements/mariadb
-    
+
     env_file:
       - .env
-    
-    ports:
-      - '3306:3306'
-    
+
     volumes:
       - db:/var/lib/mysql
-    
+
     restart: unless-stopped
-  
+
   wordpress:
-    
-    container_name: wordpress_c
-    
+
+    container_name: wordpress
+
     build: ./requirements/wordpress
-    
+
+    networks:
+      - warper-network
+
     ports:
       - '9000:9000'
 
     volumes:
       - wp:/var/www/html
-    
+
     env_file:
       - .env
-    
+
     depends_on:
       - mariadb
-    
+
     restart: unless-stopped
-  
+
   nginx:
 
     container_name: nginx
-    
+
     build: ./requirements/nginx
-    
+
+    networks:
+      - warper-network
+
     ports:
       - '443:443'
-    
+
     volumes:
       - ./wordpress:/var/www/html
-    
+
     depends_on:
       - wordpress
-    
+
     restart: unless-stopped
