@@ -13,7 +13,7 @@ EXPOSE 9000
 RUN echo '[www]' > /etc/php/7.3/fpm/pool.d/www.conf
 RUN echo 'user = www-data' >> /etc/php/7.3/fpm/pool.d/www.conf
 RUN echo 'group = www-data' >> /etc/php/7.3/fpm/pool.d/www.conf
-RUN echo 'listen = 127.0.0.1:9000' >> /etc/php/7.3/fpm/pool.d/www.conf
+RUN echo 'listen = wordpress:9000' >> /etc/php/7.3/fpm/pool.d/www.conf
 RUN echo 'pm = dynamic' >> /etc/php/7.3/fpm/pool.d/www.conf
 RUN echo 'pm.start_servers = 6' >> /etc/php/7.3/fpm/pool.d/www.conf
 RUN echo 'pm.max_children = 25' >> /etc/php/7.3/fpm/pool.d/www.conf
