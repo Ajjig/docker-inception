@@ -2,7 +2,7 @@ DB = /home/ajjig/inception/data
 WP = /home/ajjig/inception/wordpress
 
 
-all: init clean build
+all: clean build
 
 init:
 	mkdir -p ~/inception/data
@@ -12,7 +12,7 @@ clean-containers:
 	sudo docker system prune -f
 	sudo rm -rf $(DB)/* $(WP)/*
 
-fclean : down clean-containers
+fclean : init down clean-containers
 
 clean : down clean-containers
 
