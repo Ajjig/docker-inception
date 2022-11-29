@@ -14,6 +14,7 @@ COPY . .
 
 RUN bash tools/setup.sh
 
-COPY tools/default /etc/nginx/sites-available/default
+COPY conf/default /etc/nginx/sites-enabled/default
+
 
 CMD ["nginx", "-g", "daemon off;"]

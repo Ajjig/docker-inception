@@ -1,10 +1,30 @@
+DB = /home/ajjig/inception/data
+WP = /home/ajjig/inception/wordpress
 
 
-clean-images:
-	docker rm -f $(docker ps -aq) ;  docker rmi -f $(docker images -q)
-clean-container:
-	yes | docker system prune
+all: init clean build
 
-fclean : clean-containers clean-images
+init:
+	mkdir -p ~/inception/data
+	mkdir -p ~/inception/wordpress
 
-clean : clean-containers
+clean-containers:
+
+	# clear containers nd cached
+	sudo docker system prune -f
+
+	# remove volumes
+	sudo rm -rf $(DB)/* $(WP)/*
+	# this removes all saved images
+	-sudo docker rmi $(shell docker images -q | grep -v 1036)
+
+fclean : init down clean-containers
+
+clean : down clean-containers
+
+build:
+	sudo docker-compose -f ./srcs/docker-compose.yml up --build
+down:
+	sudo docker-compose -f ./srcs/docker-compose.yml down
+
+re: fclean all

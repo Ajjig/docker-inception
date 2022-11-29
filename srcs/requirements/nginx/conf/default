@@ -25,9 +25,9 @@ server {
 	# SSL configuration
 	listen 443 ssl;
 	listen [::]:443 ssl;
-	
-	
-	ssl on;	
+
+
+	ssl on;
 	ssl_certificate /etc/ssl/certs/nginx.crt;
 	ssl_certificate_key /etc/ssl/private/nginx.key;
 	ssl_protocols TLSv1.2;
@@ -47,27 +47,22 @@ server {
 	root /var/www/html;
 
 	# Add index.php to the list if you are using PHP
-	index index.html index.htm index.nginx-debian.html;
-
+	index index.php;
 	server_name majjig.42.fr;
 
 	location / {
 		# First attempt to serve request as file, then
 		# as directory, then fall back to displaying a 404.
-		try_files $uri $uri/ =404;
+		try_files $uri $uri/ /index.php$is_args$args;
 	}
 
 	# pass PHP scripts to FastCGI server
-	#
-	#location ~ \.php$ {
-	#	include snippets/fastcgi-php.conf;
-	#
-	#	# With php-fpm (or other unix sockets):
-	#	fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-	#	# With php-cgi (or other tcp sockets):
-	#	fastcgi_pass 127.0.0.1:9000;
-	#}
-
+	location ~ \.php$ {
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+		fastcgi_pass wordpress:9000;
+		fastcgi_index index.php;
+		include fastcgi.conf;
+	}
 	# deny access to .htaccess files, if Apache's document root
 	# concurs with nginx's one
 	#
