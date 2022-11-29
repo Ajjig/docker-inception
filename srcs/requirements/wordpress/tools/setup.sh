@@ -4,9 +4,11 @@ mkdir -p ${WP_INSTALLATION_PATH}
 
 mkdir -p /run/php/;
 
+chown -R www-data:www-data /var/www/*
+chown -R 755 /var/www/*
+
 touch /run/php/php7.3-fpm.pid;
 
-chown -R www-data:www-data ${WP_INSTALLATION_PATH}/* &> /dev/null
 
 if [ ! -f ${WP_INSTALLATION_PATH}/wp-config.php ] ; then
 
