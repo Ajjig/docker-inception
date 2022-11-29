@@ -26,8 +26,8 @@ if [ ! -f ${WP_INSTALLATION_PATH}/wp-config.php ] ; then
 		--dbpass=${MARIADB_PASSWORD} --dbhost=mariadb \
 		--path=${WP_INSTALLATION_PATH} --allow-root --skip-check
 
-	wp core install --url=${DOMAIN_NAME} --title=wordpress --admin_user=${DB_ADMINISTRATOR} \
-		--admin_password=${DB_ADMINISTRATOR_PASSWORD} --admin_email=${DB_ADMINISTRATOR_EMAIL} \
+	wp core install --url=${DOMAIN_NAME} --title=wordpress --admin_user=${WP_ADMINISTRATOR} \
+		--admin_password=${WP_ADMINISTRATOR_PASSWORD} --admin_email=${WP_ADMINISTRATOR_EMAIL} \
 		--allow-root --path=${WP_INSTALLATION_PATH}
 
 	wp user create ${WP_USER_NAME} ${WP_EMAIL} --user_pass=${WP_USER_PASSWORD} --allow-root --path=${WP_INSTALLATION_PATH}
