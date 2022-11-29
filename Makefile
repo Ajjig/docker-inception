@@ -23,7 +23,7 @@ fclean : init down clean-containers
 clean : down clean-containers
 
 build:
-	sudo docker-compose -f ./srcs/docker-compose.yml up
+	sudo docker-compose -f ./srcs/docker-compose.yml up --build
 down:
 	sudo docker-compose -f ./srcs/docker-compose.yml down
 
