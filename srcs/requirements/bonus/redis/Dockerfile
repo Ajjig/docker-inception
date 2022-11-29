@@ -13,4 +13,4 @@ RUN apt install redis-server && \
 
 EXPOSE 6379
 
-CMD ENTRYPOINT [ "redis-server", "--protected-mode no" ]
+CMD [ "redis-server", "--protected-mode no" ]
