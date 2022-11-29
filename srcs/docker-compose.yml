@@ -76,7 +76,7 @@ services:
       - '443:443'
 
     volumes:
-      - ./wordpress:/var/www/html
+      - wp:/var/www/html
 
     depends_on:
       - wordpress
