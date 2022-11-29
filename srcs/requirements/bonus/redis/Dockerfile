@@ -8,9 +8,9 @@ COPY . .
 
 RUN apt update
 
-RUN apt install redis-server && \
+RUN apt install redis-server -y && \
 	sed 's///' --in-place ${conf_path}
 
 EXPOSE 6379
 
-CMD [ "redis-server", "--protected-mode no" ]
+CMD [ "bash", "./tools/setup.sh" ]
