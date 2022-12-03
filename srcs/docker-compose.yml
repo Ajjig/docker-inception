@@ -82,3 +82,13 @@ services:
       - wordpress
 
     restart: unless-stopped
+  redis:
+
+    container_name: redis
+
+    build: ./requirements/bonus/redis
+
+    networks:
+      - warper-network
+
+    restart: unless-stopped
