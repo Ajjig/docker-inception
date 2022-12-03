@@ -1,4 +1,6 @@
 data/*
 data
-wordpress
-wordpress/*
+.DS_Store
+*.DS_Store
+*.vscode
+.metadata

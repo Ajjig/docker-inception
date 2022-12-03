@@ -31,6 +31,20 @@ if [ ! -f ${WP_INSTALLATION_PATH}/wp-config.php ] ; then
 		--allow-root --path=${WP_INSTALLATION_PATH}
 
 	wp user create ${WP_USER_NAME} ${WP_EMAIL} --user_pass=${WP_USER_PASSWORD} --allow-root --path=${WP_INSTALLATION_PATH}
+
+	# redis config, host port...
+	wp config set WP_CACHE true --allow-root --path=${WP_INSTALLATION_PATH}
+	wp config set WP_REDIS_HOST redis --allow-root --path=${WP_INSTALLATION_PATH}
+	wp config set WP_REDIS_PORT 6379 --raw --allow-root --path=${WP_INSTALLATION_PATH}
+	wp config set WP_CACHE_KEY_SALT ${DOMAIN_NAME} --allow-root --path=${WP_INSTALLATION_PATH}
+
+	# installing redis
+	wp plugin install redis-cache --activate --allow-root --path=${WP_INSTALLATION_PATH}
+	# update plugins
+	wp plugin update --all --allow-root --path=${WP_INSTALLATION_PATH}
+	wp plugin activate redis-cache --allow-root --path=${WP_INSTALLATION_PATH}
+	# enabling redis
+	wp redis enable --force --allow-root --path=${WP_INSTALLATION_PATH}
 fi
 
 exec "$@"
