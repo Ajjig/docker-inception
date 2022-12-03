@@ -40,9 +40,11 @@ if [ ! -f ${WP_INSTALLATION_PATH}/wp-config.php ] ; then
 
 	# installing redis
 	wp plugin install redis-cache --activate --allow-root --path=${WP_INSTALLATION_PATH}
+
 	# update plugins
 	wp plugin update --all --allow-root --path=${WP_INSTALLATION_PATH}
 	wp plugin activate redis-cache --allow-root --path=${WP_INSTALLATION_PATH}
+
 	# enabling redis
 	wp redis enable --force --allow-root --path=${WP_INSTALLATION_PATH}
 fi
