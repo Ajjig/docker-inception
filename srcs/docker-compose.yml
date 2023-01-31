@@ -60,6 +60,7 @@ services:
 
     depends_on:
       - mariadb
+      - redis
 
     restart: unless-stopped
 
@@ -93,3 +94,18 @@ services:
       - warper-network
 
     restart: unless-stopped
+
+  controller:
+
+    container_name: controller
+
+    build: ./requirements/bonus/controller
+
+    networks:
+      - warper-network
+
+    depends_on:
+      - redis
+      - mariadb
+      - wordpress
+      - nginx
