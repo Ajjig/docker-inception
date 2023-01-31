@@ -1,2 +1,2 @@
-echo "'\x1b[32mRedis is stratting..."
+echo "Redis is stratting..."
 redis-server --daemonize no
