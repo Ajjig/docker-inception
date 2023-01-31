@@ -11,14 +11,14 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/ajjig/inception/data
+      device: /Users/majjig/Desktop/inception/data
       o: bind
   wp:
     name: wp
     driver: local
     driver_opts:
       type: none
-      device: /home/ajjig/inception/wordpress
+      device: /Users/majjig/Desktop/inception/wordpress
       o: bind
 
 services:
@@ -82,6 +82,7 @@ services:
       - wordpress
 
     restart: unless-stopped
+
   redis:
 
     container_name: redis
