@@ -2,7 +2,7 @@ DB = ~/Desktop/inception/data
 WP = ~/Desktop/inception/wordpress
 
 
-all: init clean build
+all: init build
 
 init:
 	mkdir -p /Users/majjig/Desktop/inception/data
@@ -10,15 +10,12 @@ init:
 
 clean-containers:
 
-	# clear containers and caches
 	docker system prune -f
 
-	# remove volumes
 	rm -rf $(DB)/* $(WP)/*
-	# this removes all saved images
 	-docker rmi $(shell docker images -q | grep -v 1036)
 
-fclean : init down clean-containers
+fclean : clean
 	@docker volume rm wp db
 
 clean : down clean-containers
