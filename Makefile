@@ -5,12 +5,12 @@ WP = ~/Desktop/inception/wordpress
 all: init clean build
 
 init:
-	mkdir -p ~/Desktop/inception/data
-	mkdir -p ~/Desktop/inception/wordpress
+	mkdir -p /Users/majjig/Desktop/inception/data
+	mkdir -p  /Users/majjig/Desktop/inception/wordpress
 
 clean-containers:
 
-	# clear containers nd cached
+	# clear containers and caches
 	docker system prune -f
 
 	# remove volumes
