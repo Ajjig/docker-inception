@@ -5,8 +5,8 @@ WP = ~/Desktop/inception/wordpress
 all: init build
 
 init:
-	mkdir -p /Users/majjig/Desktop/inception/data
-	mkdir -p  /Users/majjig/Desktop/inception/wordpress
+	mkdir -p /home/ajjig/data/database
+	mkdir -p  /homw/ajjig/data/wordpress
 
 clean-containers:
 

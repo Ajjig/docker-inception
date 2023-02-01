@@ -11,14 +11,14 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /Users/majjig/Desktop/inception/data
+      device: /home/ajjig/data/database
       o: bind
   wp:
     name: wp
     driver: local
     driver_opts:
       type: none
-      device: /Users/majjig/Desktop/inception/wordpress
+      device: /homw/ajjig/data/wordpress
       o: bind
 
 services:
