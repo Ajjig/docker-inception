@@ -1,12 +1,12 @@
-DB = ~/Desktop/inception/data
-WP = ~/Desktop/inception/wordpress
+DB = /home/ajjig/data/database
+WP = /home/ajjig/data/wordpress
 
 
 all: init build
 
 init:
-	mkdir -p /home/ajjig/data/database
-	mkdir -p  /homw/ajjig/data/wordpress
+	mkdir -p $(DB)
+	mkdir -p  $(WP)
 
 clean-containers:
 
